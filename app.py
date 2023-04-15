@@ -25,6 +25,13 @@ def index():
     result = request.args.get("result")
     return render_template("test.html", result=result)
 
+@app.route("/<path>")
+def serve_static(path):
+    return url_for('static', filename='{path}')
+
+@app.route("/js/<path>")
+def serve_js(path):
+    return url_for('static', filename='js/{path}')
 
 def generate_prompt(animal):
     return """Suggest three names for an animal that is a superhero.
