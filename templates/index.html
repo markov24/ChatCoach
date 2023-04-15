@@ -18,17 +18,17 @@
     <button id="pauseButton">Pause</button>
     <button id="stopButton">Stop</button>
   </div>
-  <form action="/" method="post">
+  <!-- <form action="/" method="post">
     <input type="text" name="animal" placeholder="Enter an animal" required />
     <input type="submit" value="Generate names" />
-  </form>
-  {% if result %}
+  </form> -->
+  <!-- {% if result %}
   <div class="result">{{ result }}</div>
-  {% endif %}
+  {% endif %} -->
   <ol id="recordingsList"></ol>
 
   <!--Recorder.js library-->
   <script src="https://cdn.rawgit.com/mattdiamond/Recorderjs/08e7abd9/dist/recorder.js"></script> 
   <!--Our recorder script-->
-  <script src="js/record.js"></script>
+  <script src="{{ url_for('static', filename='js/record.js') }}"></script>
 </body>
