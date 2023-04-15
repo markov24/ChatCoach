@@ -1,11 +1,10 @@
 import openai
-import os
 
-openai.api_key = os.environ['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']
+openai.api_key = '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'
 prompt = "Respond to me as if you are Snoop Dog"
 
 response = openai.Completion.create(
-    engine="gpt-3",
+    engine="davinci",
     prompt=prompt,
     max_tokens=50,
 )
