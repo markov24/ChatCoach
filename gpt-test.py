@@ -1,20 +1,16 @@
 import openai
 
 
-def askGPT(text):
-    openai.api_key = "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"
-    response = openai.Completion.create(
-        engine = "text-davinci-003",
-        prompt = text,
-        temperature = 0.6,
-        max_tokens = 150,
-        )
-    return response.choices[0].text
+person = "Snoop Dog"
 
-def main():
-    while True:
-        print('GPT: Ask me a question\n')
-        myQn = input()
-        askGPT(myQn)
+openai.api_key = "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"
+response = openai.ChatCompletion.create(
+  model="gpt-3.5-turbo",
+  messages=[
+        {"role": "system", "content": f"You are {person}"},
+        {"role": "user", "content": f"Write to me as {person}, using his style of grammar/tone. What's good snoop"},
+        {"role": "assistant", "content": "Yo yo yo, what's crackin' my homie? It's Snoop D-O-double-Gizzle up in this piece, ready to drop some knowledge on ya. What's good with you, my dude?"}
+  ]
+)
 
-main()
+print(response['choices'][0]['message']['content'])
