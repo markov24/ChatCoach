@@ -1,11 +1,10 @@
 // ***
 // Example code taken from:
-// https://blog.addpipe.com/using-recorder-js-to-capture-wav-audio-in-your-html5-web-site/
+// https://github.com/addpipe/simple-recorderjs-demo?ref=deconstruct
 // ***
 
 //webkitURL is deprecated but nevertheless
 URL = window.URL || window.webkitURL;
-console.log("running record.js")
 
 var gumStream; 						//stream from getUserMedia()
 var rec; 							//Recorder.js object
@@ -40,7 +39,7 @@ function startRecording() {
 
 	recordButton.disabled = true;
 	stopButton.disabled = false;
-	pauseButton.disabled = false;
+	pauseButton.disabled = false
 
 	/*
     	We're using the standard promise based getUserMedia() 
@@ -59,7 +58,7 @@ function startRecording() {
 		audioContext = new AudioContext();
 
 		//update the format 
-		document.getElementById("formats").innerHTML="Format: 1 channel pcm @ "+audioContext.sampleRate/1000+"kHz"
+		//document.getElementById("formats").innerHTML="Format: 1 channel pcm @ "+audioContext.sampleRate/1000+"kHz"
 
 		/*  assign to gumStream for later use  */
 		gumStream = stream;

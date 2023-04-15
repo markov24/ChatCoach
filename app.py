@@ -10,10 +10,10 @@ openai.api_key = os.getenv("OPENAI_API_KEY")
 
 @app.route("/", methods=("GET", "POST"))
 def index():
-    if request.method == "POST":
-        audio_file = request.form["audio_file"]
-        transcript = openai.Audio.transcribe("whisper-1", audio_file, response_format="text")
-        return redirect(url_for("index", result=transcript))
+    # if request.method == "POST":
+    #     audio_file = request.form["audio_file"]
+    #     transcript = openai.Audio.transcribe("whisper-1", audio_file, response_format="text")
+    #     return redirect(url_for("index", result=transcript))
         # animal = request.form["animal"]
         # response = openai.Completion.create(
         #     model="text-davinci-003",
@@ -23,7 +23,7 @@ def index():
         # return redirect(url_for("index", result=response.choices[0].text))
 
     result = request.args.get("result")
-    return render_template("test.html", result=result)
+    return render_template("index.html", result=result)
 
 
 def generate_prompt(animal):
