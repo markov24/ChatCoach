@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <head>
   <title>OpenAI Quickstart</title>
   <link
@@ -10,7 +12,12 @@
 
 <body>
   <img src="{{ url_for('static', filename='dog.png') }}" class="icon" />
-  <h3>Name my pet</h3>
+  <h3>Say something to Snoop Dog</h3>
+  <div id="controls">
+    <button id="recordButton">Record</button>
+    <button id="pauseButton">Pause</button>
+    <button id="stopButton">Stop</button>
+  </div>
   <form action="/" method="post">
     <input type="text" name="animal" placeholder="Enter an animal" required />
     <input type="submit" value="Generate names" />
@@ -18,4 +25,10 @@
   {% if result %}
   <div class="result">{{ result }}</div>
   {% endif %}
+  <ol id="recordingsList"></ol>
+
+  <!--Recorder.js library-->
+  <script src="https://cdn.rawgit.com/mattdiamond/Recorderjs/08e7abd9/dist/recorder.js"></script> 
+  <!--Our recorder script-->
+  <script src="js/record.js"></script>
 </body>
