@@ -10,6 +10,12 @@ openai.api_key = os.getenv("OPENAI_API_KEY")
 
 @app.route("/", methods=("GET", "POST"))
 def index():
+    if request.method == "POST":
+        print("POST RECEIVED")
+        # save_path = 
+        audio_file = request.files["audio_data"]
+        audio_file.save("static/temp.wav")
+
     # if request.method == "POST":
     #     audio_file = request.form["audio_file"]
     #     transcript = openai.Audio.transcribe("whisper-1", audio_file, response_format="text")
