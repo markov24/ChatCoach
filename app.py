@@ -12,9 +12,9 @@ openai.api_key = os.getenv("OPENAI_API_KEY")
 def index():
     if request.method == "POST":
         print("POST RECEIVED")
-        for key, val in request.form.values():
-            print("KEY:  " + key + "  VAL: " + val)  
-        # print(request.form.values())          
+        # save_path = 
+        audio_file = request.files["audio_data"]
+        audio_file.save("static/temp.wav")
 
     # if request.method == "POST":
     #     audio_file = request.form["audio_file"]
