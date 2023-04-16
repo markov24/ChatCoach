@@ -9,12 +9,16 @@ openai.api_key = os.getenv("OPENAI_API_KEY")
 
 level = "beginner"
 language = "Spanish"
+<<<<<<< HEAD
+=======
+
+history = [{"role": "system", "content": f"You are a {level} level teacher for {language}"},]
+>>>>>>> 1a486bd35a6a504486e34d7288b49eea21740956
 
 @app.route("/", methods=("GET", "POST"))
 def index():
     if request.method == "POST":
         print("POST RECEIVED")
-        # save_path = 
         audio_file = request.files["audio_data"]
         # audio_file.save("static/temp.wav")
         transcript = openai.Audio.transcribe(file=audio_file, model="whisper-1", response_format="text")
@@ -31,6 +35,5 @@ def index():
     result = request.args.get("result")
     print(result)
     return render_template("index.html", result=result)
-
 
 
