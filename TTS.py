@@ -1,5 +1,27 @@
 import boto3
 
+language_to_engine = {"Arabic":"Zeina",
+                      "Chinese":"Zhiyu",
+                      "Danish":"Naja",
+                      "Dutch":"Lotte",
+                      "English":"Salli",
+                      "French":"Léa",
+                      "German":"Hans",
+                      "Hindi":"Aditi",
+                      "Icelandic":"Karl",
+                      "Italian":"Giorgo",
+                      "Japanese":"Mizuki",
+                      "Korean":"Seoyeon",
+                      "Norwegian":"Liv",
+                      "Polish":"Ewa",
+                      "Portuguese":"Cristiano",
+                      "Romanian":"Carmen",
+                      "Russian":"Tatyana",
+                      "Spanish":"Miguel",
+                      "Swedish":"Astrid",
+                      "Turkish":"Filiz",
+                      }
+
 polly_client = boto3.Session(
     aws_access_key_id="AKIA3DJJ5GR64YYH5XOM",                     
     aws_secret_access_key="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",
@@ -13,3 +35,5 @@ response = polly_client.synthesize_speech(VoiceId='Amy',
 file = open('speech.mp3', 'wb')
 file.write(response['AudioStream'].read())
 file.close()
+
+
