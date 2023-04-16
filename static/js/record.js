@@ -169,9 +169,9 @@ function createDownloadLink(blob) {
 
 
 
-	// li.appendChild(document.createTextNode (" "))//add a space in between
+	// li.appendChild(document.csreateTextNode (" "))//add a space in between
 	// li.appendChild(upload) //add the upload link to li
 
-	//add the li element to the ol
+	// add the li element to the ol
 	// recordingsList.appendChild(li);
 }
