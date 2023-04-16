@@ -14,7 +14,8 @@
 
 <body>
   <!-- <img width="60%" height="200" src="{{ url_for('static', filename='logo.png') }}" class="icon" /> -->
-  <h3>Say something to Chat Coach</h3>
+  <img src="{{ url_for('static', filename='logo.png') }}" alt="Company logo" width="500" height="250">
+  <h3></h3>
   <form method="POST" action="/config">
     <select name="setting">
       <option value="" disabled selected>Select Language</option>
