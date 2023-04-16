@@ -15,7 +15,10 @@ history = [{"role": "system", "content": f"You are a {level} level teacher for {
 @app.route("/", methods=("GET", "POST"))
 def index():
     if request.method == "POST":
-        audio_file = request.files["audio_file"]
+        print("POST RECEIVED")
+        audio_file = request.files["audio_data"]
+        # audio_file.save("static/temp.wav")
+        
         transcript = openai.Audio.transcribe(file=audio_file, model="whisper-1", response_format="text")
 
         history.append({"role":"user", "content":transcript})
