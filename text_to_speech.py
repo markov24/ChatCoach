@@ -37,7 +37,7 @@ def TTS(text, language):
                     Text = text,
                     Engine = 'standard')
 
-    os.remove('static/speech.mp3')
+    # os.remove('static/speech.mp3')
     current_time = time.strftime("%M-%S")
     file_path = "static/speech_" + current_time + ".mp3"
     # file = open(file_path, 'wb')

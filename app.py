@@ -14,7 +14,7 @@ openai.api_key = os.getenv("OPENAI_API_KEY")
 # Get language and level from user options
 
 level = "beginner"
-language = "Spanish"
+language = "German"
 
 language_to_name = {"Arabic":"Zeina",
                     "Chinese":"Zhiyu",
@@ -49,6 +49,7 @@ oldFilePath = ""
 
 @app.route('/config', methods=['GET', 'POST'])
 def get_lang():
+    global language
     if request.method == 'POST':
         language = request.form['setting'] # get the value of the selected option
         level = request.form['setting'] # get the value of the selected option
@@ -78,6 +79,7 @@ def src():
 def index():
     global responseFilePath
     global oldFilePath
+    global language
 
     # When User sends a .wav file, transcribe it and generate a response, then send the response as audio
     if request.method == "POST":
@@ -106,9 +108,10 @@ def index():
             print(thing['content'])
         
         responseFilePath = tts.TTS(response_text, language)
-        if(oldFilePath != ""):
-            os.remove(oldFilePath)
-        oldFilePath=responseFilePath
+        # TODO: remove old files...
+        # if(oldFilePath != ""):
+        #     os.remove(oldFilePath)
+        # oldFilePath=responseFilePath
         return responseFilePath
     
     # When the user selects their preferences, update the URL to reflect them
