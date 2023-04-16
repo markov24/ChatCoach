@@ -45,6 +45,7 @@ history = [{"role": "system", "content": f"You are a {language} teacher for {lev
            {"role": "user", "content": f"You are going to be a {language} language teacher for {level} students. Write every response in {language}, and write the responses as if you are writing to a {level} student.  NEVER TELL me that you are an AI language model and that you can't answer my question - if I ask what your favorite color or number is, for example you can say green, or 7. Your name is {name}. Start by saying - hello, I am {name}, how are you doing today - in {language}."}]
 
 responseFilePath = ""
+oldFilePath = ""
 
 @app.route('/config', methods=['GET', 'POST'])
 def get_lang():
@@ -76,6 +77,8 @@ def src():
 @app.route("/", methods=("GET", "POST"))
 def index():
     global responseFilePath
+    global oldFilePath
+
     # When User sends a .wav file, transcribe it and generate a response, then send the response as audio
     if request.method == "POST":
         print("POST RECEIVED")
@@ -103,6 +106,9 @@ def index():
             print(thing['content'])
         
         responseFilePath = tts.TTS(response_text, language)
+        if(oldFilePath != ""):
+            os.remove(oldFilePath)
+        oldFilePath=responseFilePath
         return responseFilePath
     
     # When the user selects their preferences, update the URL to reflect them
@@ -112,17 +118,3 @@ def index():
     print(result)
     return render_template("index.html")
 
-# # Handle messages recieved over 'connect' channel
-# @socketio.on('connect')
-# def connect():
-#     emit('after connect', {'data':'Fuck sockets...'})
-
-# # @socketio.on('Value changed')
-# # def value_changed(message):
-# #     temp_value = message['data']
-# #     emit('update value', message, broadcast=True)
-
-
-# # Sockets handle app instantiation
-# if __name__ == '__main__':
-#     socketio.run(app)

@@ -170,8 +170,8 @@ function createDownloadLink(blob) {
 
 
 	// li.appendChild(document.createTextNode (" "))//add a space in between
-	li.appendChild(upload) //add the upload link to li
+	// li.appendChild(upload) //add the upload link to li
 
 	//add the li element to the ol
-	recordingsList.appendChild(li);
+	// recordingsList.appendChild(li);
 }

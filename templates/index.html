@@ -54,8 +54,8 @@
 
   <div id="controls">
     <button id="recordButton">Record</button>
-    <button id="pauseButton">Pause</button>
-    <button id="stopButton">Stop</button>
+    <button id="pauseButton" disabled=true>Pause</button>
+    <button id="stopButton" disabled=true>Stop</button>
   </div>
 
   <audio id="response-audio" hidden controls autoplay>
@@ -63,7 +63,7 @@
   </audio>
 
   <!-- <ol id="recordingsList"></ol> -->
-  <a id="upload_link" href="">Submit</a>
+  <a id="upload_link" href=""></a>
 
   <!--Recorder.js library-->
   <script src="https://cdn.rawgit.com/mattdiamond/Recorderjs/08e7abd9/dist/recorder.js"></script> 
@@ -88,6 +88,7 @@
           audio = document.getElementById("response-audio");
           source = document.getElementById("response-source");
           audio.hidden = false;
+
 
           source.src = audio_path;
 
