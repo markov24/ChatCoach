@@ -4,7 +4,7 @@ import openai
 person = "George Washington"
 
 openai.api_key = "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"
-audio_file = open("gettysburg_address.mp3", "rb")
+audio_file = open("speech.mp3", "rb")
 transcript = openai.Audio.transcribe(file=audio_file, model="whisper-1", response_format="text")
 
 response = openai.ChatCompletion.create(
