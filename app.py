@@ -12,12 +12,32 @@ openai.api_key = os.getenv("OPENAI_API_KEY")
 level = "beginner"
 language = "Spanish"
 
-# Conversation begins by telling GPT how to act:
-history = [{"role": "system", "content": f"You are a {level} level teacher for {language}"},]
-
+world = {"Arabic":"Zeina",
+                        "Chinese":"Zhiyu",
+                        "Danish":"Naja",
+                        "Dutch":"Lotte",
+                        "English":"Salli",
+                        "French":"Léa",
+                        "German":"Hans",
+                        "Hindi":"Aditi",
+                        "Icelandic":"Karl",
+                        "Italian":"Giorgo",
+                        "Japanese":"Mizuki",
+                        "Korean":"Seoyeon",
+                        "Norwegian":"Liv",
+                        "Polish":"Ewa",
+                        "Portuguese":"Cristiano",
+                        "Romanian":"Carmen",
+                        "Russian":"Tatyana",
+                        "Spanish":"Miguel",
+                        "Swedish":"Astrid",
+                        "Turkish":"Filiz",
+                        }
+example = [f"Greet the student in {i} and ask the student what they want to learn today? " for i in world]
 
 
 @app.route("/", methods=("GET", "POST"))
+
 def index():
     # When User sends a .wav file, transcribe it and generate a response, then send the response as audio
     if request.method == "POST":
@@ -52,6 +72,7 @@ def index():
     ###
 
     result = request.args.get("result")
+    print(result)
     return render_template("index.html", result=result)
 
 
