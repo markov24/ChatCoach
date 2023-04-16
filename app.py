@@ -33,6 +33,9 @@ world = {"Arabic":"Zeina",
                         "Swedish":"Astrid",
                         "Turkish":"Filiz",
                         }
+
+# Conversation begins by telling GPT how to act:
+history = [{"role": "system", "content": f"You are a {level} level teacher for {language}"},]
 example = [f"Greet the student in {i} and ask the student what they want to learn today? " for i in world]
 
 
