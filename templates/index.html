@@ -5,7 +5,7 @@
   <title>OpenAI Quickstart</title>
   <link
     rel="shortcut icon"
-    href="{{ url_for('static', filename='dog.png') }}"
+    href="{{ url_for('static', filename='logo.png') }}"
   />
   <!-- <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js"></script> -->
@@ -13,40 +13,7 @@
 </head>
 
 <body>
-  <img src="{{ url_for('static', filename='dog.png') }}" class="icon" />
-  <h3>ChatCoach</h3>
-  <select>
-    <option value="" disabled selected>Select Language</option>
-    <option value="">Select language</option>
-    <option value="arabic">Arabic</option>
-    <option value="chinese">Chinese</option>
-    <option value="danish">Danish</option>
-    <option value="dutch">Dutch</option>
-    <option value="english">English</option>
-    <option value="french">French</option>
-    <option value="german">German</option>
-    <option value="hindi">Hindi</option>
-    <option value="icelandic">Icelandic</option>
-    <option value="italian">Italian</option>
-    <option value="japanese">Japanese</option>
-    <option value="korean">Korean</option>
-    <option value="norwegian">Norwegian</option>
-    <option value="polish">Polish</option>
-    <option value="portuguese">Portuguese</option>
-    <option value="romanian">Romanian</option>
-    <option value="russian">Russian</option>
-    <option value="spanish">Spanish</option>
-    <option value="swedish">Swedish</option>
-    <option value="turkish">Turkish</option>
-  </select>
-
-
-  <select>
-    <option value="" disabled selected>Select Level</option>
-    <option value="Begineer">Begineer</option>
-    <option value="Intermediate">Intermediate</option>
-    <option value="Fluent">Fluent</option>
-  </select>
+  <!-- <img width="60%" height="200" src="{{ url_for('static', filename='logo.png') }}" class="icon" /> -->
   <h3>Say something to Chat Coach</h3>
   <form method="POST" action="/config">
     <select name="setting">
@@ -81,6 +48,7 @@
     </select>
     <button type="submit">Go</button>
   </form>
+
 
   <!-- <input type="range" class="form-control-range sync" id="slider1" min="0" max="50" value="{{temp_value}}" -->
 
@@ -125,9 +93,7 @@
           source.src = audio_path;
 
           audio.load();
-          audio.oncanplaythrough = function(){
-            audio.play();
-          }
+          audio.play();
         };
       }
     </script>
