@@ -10,20 +10,24 @@ openai.api_key = os.getenv("OPENAI_API_KEY")
 level = "beginner"
 language = "Spanish"
 
+history = [{"role": "system", "content": f"You are a {level} level teacher for {language}"},]
+
 @app.route("/", methods=("GET", "POST"))
 def index():
     if request.method == "POST":
-        audio_file = request.form["audio_file"]
+        audio_file = request.files["audio_file"]
         transcript = openai.Audio.transcribe(file=audio_file, model="whisper-1", response_format="text")
 
+        history.append({"role":"user", "content":transcript})
+
         response = openai.ChatCompletion.create(
-        model="gpt-3.5-turbo",
-        messages=[
-                {"role": "system", "content": f"You are a {level} level teacher for {language}"},
-                {"role": "user", "content": transcript}
-            ]
+            model="gpt-3.5-turbo",
+            messages=history
         )
-        return redirect(url_for("index", result=response.choices[0].text))
+        
+        history.append({"role":"user", "content":response['choices'][0]['message']['content']})
+        
+        return redirect(url_for("index", result=response['choices'][0]['message']['content']))
 
     result = request.args.get("result")
     return render_template("index.html", result=result)
