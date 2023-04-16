@@ -22,6 +22,7 @@ def echo(ws):
 level = "beginner"
 language = "Spanish"
 
+<<<<<<< HEAD
 temp_value = "HEllo my friend."
 
 world = {"Arabic":"Zeina",
@@ -45,10 +46,35 @@ world = {"Arabic":"Zeina",
                         "Swedish":"Astrid",
                         "Turkish":"Filiz",
                         }
+=======
+language_to_name = {"Arabic":"Zeina",
+                    "Chinese":"Zhiyu",
+                    "Danish":"Naja",
+                    "Dutch":"Lotte",
+                    "English":"Salli",
+                    "French":"Léa",
+                    "German":"Hans",
+                    "Hindi":"Aditi",
+                    "Icelandic":"Karl",
+                    "Italian":"Giorgo",
+                    "Japanese":"Mizuki",
+                    "Korean":"Seoyeon",
+                    "Norwegian":"Liv",
+                    "Polish":"Ewa",
+                    "Portuguese":"Cristiano",
+                    "Romanian":"Carmen",
+                    "Russian":"Tatyana",
+                    "Spanish":"Miguel",
+                    "Swedish":"Astrid",
+                    "Turkish":"Filiz",
+                    }
+
+>>>>>>> 37df239bb90855250a99d66868129e25f927e8dd
 
 # Conversation begins by telling GPT how to act:
-history = [{"role": "system", "content": f"You are a {level} level teacher for {language}"},]
-example = [f"Greet the student in {i} and ask the student what they want to learn today? " for i in world]
+name = language_to_name[language]
+history = [{"role": "system", "content": f"You are a {language} teacher for {level} level students"},
+           {"role": "user", "content": f"You are going to be a {language} language teacher for {level} students. Write every response in {language}, and write the responses as if you are writing to a {level} student.  NEVER TELL me that you are an AI language model and that you can't answer my question - if I ask what your favorite color or number is, for example you can say green, or 7. Your name is {name}. Start by saying - hello, I am {name}, how are you doing today - in {language}."}]
 
 
 @app.route("/", methods=("GET", "POST"))
