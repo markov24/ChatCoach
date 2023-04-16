@@ -106,4 +106,25 @@ document.querySelector("#submitButton").addEventListener("click", (event) => {
   <script src="https://cdn.rawgit.com/mattdiamond/Recorderjs/08e7abd9/dist/recorder.js"></script> 
   <!--Our recorder script-->
   <script src="{{ url_for('static', filename='js/record.js') }}"></script>
+
+  <!-- <audio controls>
+    <source src="speech.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio> -->
+  <!-- <h1>Upload and Play Audio File</h1> -->
+    <button onclick="uploadAndPlay()">Play Speech</button>
+    <script>
+      function uploadAndPlay() {
+        // Upload the audio file to the website
+        var formData = new FormData();
+        formData.append("audio", "../static/speech.mp3");
+        // Send the form data to the server using AJAX or fetch
+
+        // Play the audio file automatically
+        var audio = new Audio("../static/speech.mp3");
+        audio.play();
+      }
+    </script>
+
 </body>
+
