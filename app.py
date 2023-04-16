@@ -9,13 +9,33 @@ openai.api_key = os.getenv("OPENAI_API_KEY")
 
 level = "beginner"
 language = "Spanish"
-<<<<<<< HEAD
-=======
 
-history = [{"role": "system", "content": f"You are a {level} level teacher for {language}"},]
->>>>>>> 1a486bd35a6a504486e34d7288b49eea21740956
+world = {"Arabic":"Zeina",
+                        "Chinese":"Zhiyu",
+                        "Danish":"Naja",
+                        "Dutch":"Lotte",
+                        "English":"Salli",
+                        "French":"Léa",
+                        "German":"Hans",
+                        "Hindi":"Aditi",
+                        "Icelandic":"Karl",
+                        "Italian":"Giorgo",
+                        "Japanese":"Mizuki",
+                        "Korean":"Seoyeon",
+                        "Norwegian":"Liv",
+                        "Polish":"Ewa",
+                        "Portuguese":"Cristiano",
+                        "Romanian":"Carmen",
+                        "Russian":"Tatyana",
+                        "Spanish":"Miguel",
+                        "Swedish":"Astrid",
+                        "Turkish":"Filiz",
+                        }
+example = [f"Greet the student in {i} and ask the student what they want to learn today? " for i in world]
+
 
 @app.route("/", methods=("GET", "POST"))
+
 def index():
     if request.method == "POST":
         print("POST RECEIVED")
@@ -23,13 +43,27 @@ def index():
         # audio_file.save("static/temp.wav")
         transcript = openai.Audio.transcribe(file=audio_file, model="whisper-1", response_format="text")
 
+        
+
+
+
         response = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
         messages=[
-                {"role": "system", "content": f"You are a {level} level teacher for {language}"},
+                {"role": "system", "content": f"You are a {level} level teacher for {language}, limit your response to within two sentences"},
                 {"role": "user", "content": transcript}
             ]
         )
+
+        response2 = [openai.ChatCompletion.create(
+        model="gpt-3.5-turbo",
+        messages=[
+                {"role": "system", "content": f"You are a {level} level teacher for {language}, limit your response to within two sentences"},
+                {"role": "user", "content": i}
+            ]
+        ) for i in example]
+
+
         return redirect(url_for("index", result=response.choices[0].text))
 
     result = request.args.get("result")
