@@ -16,18 +16,6 @@ def index():
         audio_file = request.files["audio_data"]
         audio_file.save("static/temp.wav")
 
-    # if request.method == "POST":
-    #     audio_file = request.form["audio_file"]
-    #     transcript = openai.Audio.transcribe("whisper-1", audio_file, response_format="text")
-    #     return redirect(url_for("index", result=transcript))
-        # animal = request.form["animal"]
-        # response = openai.Completion.create(
-        #     model="text-davinci-003",
-        #     prompt=generate_prompt(animal),
-        #     temperature=0.6,
-        # )
-        # return redirect(url_for("index", result=response.choices[0].text))
-
     result = request.args.get("result")
     return render_template("index.html", result=result)
 
