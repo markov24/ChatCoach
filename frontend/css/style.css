@@ -234,13 +234,13 @@ button {
 }
 
 .navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover {
-    color: #8d18de;
+    color: #054709;
 }
 
 .banner_section{
      width: 100%;
      float: left;
-     background-image: url(../images/banner-bg.png);
+     background-image: url(../images/banner.jpg);
      height: auto;
      padding-bottom: 90px;
 }
@@ -282,14 +282,14 @@ button {
     float: left;
     font-size: 18px;
     text-align: center;
-    color: #9a26e2;
+    color: #49a45a;
     background-color: #ffffff;
     padding: 10px 0px;
 }
 
 .read_text a:hover {
     color: #ffffff;
-    background-color: #d102ff;
+    background-color: #083814;
 }
 
 .bg_main {
@@ -357,7 +357,7 @@ button {
     font-size: 18px;
     text-align: center;
     color: #ffffff;
-    background-color: #820cdb;
+    background-color: #083814;
     padding: 10px 0px;
     border-radius: 10px;
 }
@@ -424,7 +424,7 @@ button {
 .contact_main{
      width: 100%;
      float: left;
-     background-color: #4323b1;
+     background-color: #49a45a;
      height: auto;
      padding: 40px;
 }
@@ -483,7 +483,7 @@ button {
     text-align: center;
     font-size: 18px;
     color: #ffffff;
-    background-color: #8929cf;
+    background-color: #083814;
     padding: 10px 0px;
     margin-top: 40px;
 }
@@ -542,7 +542,7 @@ button {
 .footer_section{
      width: 100%;
      float: left;
-     background-image: url(../images/footer-bg.png);
+     background-image: url(../images/banner.jpg);
      height: auto;
      padding-bottom: 50px;
      margin-top: 90px;
@@ -562,7 +562,7 @@ button {
 .form-control {
     background-color: transparent !important;
     border: 0px;
-    border-bottom: 2px solid #c5a2e7;
+    border-bottom: 2px solid #083814;
     border-radius: 0px;
     padding-left: 0px;
 }
@@ -576,7 +576,7 @@ input.form-control::placeholder {
     width: 100%;
     background-color: transparent;
     color: #fdfdfe;
-    border: 2px solid #c4b2e7;
+    border: 2px solid #083814;
     position: relative;
     left: -175px;
     text-transform: uppercase;
