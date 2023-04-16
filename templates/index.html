@@ -55,46 +55,16 @@
     <button id="pauseButton">Pause</button>
     <button id="stopButton">Stop</button>
   </div>
-  <audio controls autoplay>
-    <!-- <source src="{{ url_for('static', filename='speech.mp3') }}" type="audio/mpeg"> -->
-    <source src="/static/speech.mp3" type="audio/mpeg">
+
+    <input id="submitButton" type="submit" value="Submit">
+
+  <audio id="response-audio" controls autoplay>
+    <source src="{{ url_for('static', filename='speech.mp3') }}" type="audio/mpeg">
   Your browser does not support the audio element.
   </audio>
-  <!-- <form action="/" method="post">
-    <input type="text" name="animal" placeholder="Enter an animal" required />
-    <input type="submit" value="Generate names" />
-  </form> -->
-  <!-- {% if result %}
-  <div class="result">{{ result }}</div>
-  {% endif %} -->
+
   <ol id="recordingsList"></ol>
 
-  <!--Websockets to talk to app.py
-  <script>
-    $(document).ready(function(){
-      // sending a connect request to app.py
-      var socket = io.connect('/');
-
-      // Event handler for a change of value
-      // $('input.sync').on('input', function(event){
-      //   socket.emit('Value changed', {
-      //     who:$(this).attr('id'),
-      //     data: $(this).val()
-      //   });
-      //   return false;
-      // });
-
-      // // Receive broadcast message from app.py
-      // socket.on('after connect', function(msg){
-      //   console.log("After connect!!!", msg)
-      // });
-
-      // socket.on('update value', function(msg){
-      //   console.log('Value updated!!!');
-      //   $('#'+msg.who).val(msg.data);  // updates value
-      // });
-    });
-  </script> -->
   <!--Recorder.js library-->
   <script src="https://cdn.rawgit.com/mattdiamond/Recorderjs/08e7abd9/dist/recorder.js"></script> 
   <!--Our recorder script-->

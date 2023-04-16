@@ -1,52 +1,20 @@
 import os
 import openai
-from flask import Flask, redirect, render_template, request, url_for
-from flask_sock import Sock
+from flask import Flask, redirect, send_from_directory, render_template, request, url_for
+# from flask_sock import Sock
 import text_to_speech as tts
 
 # Creating a Flask app and instantiating sockets and OpenAI API
 app = Flask(__name__)
 os.environ["OPENAI_API_KEY"] = "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"
 openai.api_key = os.getenv("OPENAI_API_KEY")
-# socketio = SocketIO(app)
-sock = Sock(app)
 
-@sock.route('/echo')
-def echo(ws):
-    while True:
-        data = ws.receive()
-        ws.send(data)
 
 # Get language and level from user options
 
 level = "beginner"
 language = "Spanish"
 
-<<<<<<< HEAD
-temp_value = "HEllo my friend."
-
-world = {"Arabic":"Zeina",
-                        "Chinese":"Zhiyu",
-                        "Danish":"Naja",
-                        "Dutch":"Lotte",
-                        "English":"Salli",
-                        "French":"Léa",
-                        "German":"Hans",
-                        "Hindi":"Aditi",
-                        "Icelandic":"Karl",
-                        "Italian":"Giorgo",
-                        "Japanese":"Mizuki",
-                        "Korean":"Seoyeon",
-                        "Norwegian":"Liv",
-                        "Polish":"Ewa",
-                        "Portuguese":"Cristiano",
-                        "Romanian":"Carmen",
-                        "Russian":"Tatyana",
-                        "Spanish":"Miguel",
-                        "Swedish":"Astrid",
-                        "Turkish":"Filiz",
-                        }
-=======
 language_to_name = {"Arabic":"Zeina",
                     "Chinese":"Zhiyu",
                     "Danish":"Naja",
@@ -69,7 +37,6 @@ language_to_name = {"Arabic":"Zeina",
                     "Turkish":"Filiz",
                     }
 
->>>>>>> 37df239bb90855250a99d66868129e25f927e8dd
 
 # Conversation begins by telling GPT how to act:
 name = language_to_name[language]
@@ -106,7 +73,7 @@ def index():
             print(thing['content'])
         
         response_file_path = tts.TTS(response_text, language)
-        return redirect("index.html")
+        return response_file_path
     
     # When the user selects their preferences, update the URL to reflect them
     ###
