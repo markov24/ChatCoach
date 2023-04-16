@@ -123,31 +123,10 @@ function stopRecording() {
 function createDownloadLink(blob) {
 	
 	var url = URL.createObjectURL(blob);
-	// var au = document.createElement('audio');
-	// var li = document.createElement('li');
-	// var link = document.createElement('a');
 	var upload = document.getElementById("upload_link");
 
 	//name of .wav file to use during upload and download (without extendion)
 	var filename = new Date().toISOString();
-
-	//add controls to the <audio> element
-	// au.controls = true;
-	// au.src = url;
-
-	//save to disk link
-	// link.href = url;
-	// link.download = filename+".wav"; //download forces the browser to donwload the file using the  filename
-	// link.innerHTML = "Save to disk";
-
-	//add the new audio element to li
-	// li.appendChild(au);
-	
-	//add the filename to the li
-	// li.appendChild(document.createTextNode(filename+".wav "))
-
-	//add the save to disk link to li
-	// li.appendChild(link);
 	
 	//upload link
 	// var upload = document.createElement('a');
@@ -166,12 +145,4 @@ function createDownloadLink(blob) {
 		  xhr.open("POST","/",true);
 		  xhr.send(fd);
 	};
-
-
-
-	// li.appendChild(document.csreateTextNode (" "))//add a space in between
-	// li.appendChild(upload) //add the upload link to li
-
-	// add the li element to the ol
-	// recordingsList.appendChild(li);
 }

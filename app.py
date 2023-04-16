@@ -1,7 +1,6 @@
 import os
 import openai
 from flask import Flask, redirect, send_from_directory, render_template, request, url_for
-# from flask_sock import Sock
 import text_to_speech as tts
 
 # Creating a Flask app and instantiating sockets and OpenAI API
