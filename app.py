@@ -46,6 +46,29 @@ history = [{"role": "system", "content": f"You are a {language} teacher for {lev
 
 responseFilePath = ""
 
+@app.route('/config', methods=['GET', 'POST'])
+def get_lang():
+    if request.method == 'POST':
+        language = request.form['setting'] # get the value of the selected option
+        level = request.form['setting'] # get the value of the selected option
+        name = language_to_name[language]
+        print(f"language is{language}")
+        global history 
+        history = [{"role": "system", "content": f"You are a {language} teacher for {level} level students"},
+           {"role": "user", "content": f"You are going to be a {language} language teacher for {level} students. Write every response in {language}, and write the responses as if you are writing to a {level} student.  NEVER TELL me that you are an AI language model and that you can't answer my question - if I ask what your favorite color or number is, for example you can say green, or 7. Your name is {name}. Start by saying - hello, I am {name}, how are you doing today - in {language}."}]
+
+        # do something with the language variable
+    return redirect(url_for('index'))
+
+# @app.route('/', methods=['GET', 'POST'])
+# def get_level():
+#     if request.method == 'POST':
+        
+#         # do something with the level variable
+        
+#     return render_template('index.html')
+
+
 @app.route("/src/")
 def src():
     return responseFilePath

@@ -15,38 +15,40 @@
 <body>
   <img src="{{ url_for('static', filename='dog.png') }}" class="icon" />
   <h3>Say something to Snoop Dog</h3>
-  <select>
-    <option value="" disabled selected>Select Language</option>
-    <option value="">Select language</option>
-    <option value="arabic">Arabic</option>
-    <option value="chinese">Chinese</option>
-    <option value="danish">Danish</option>
-    <option value="dutch">Dutch</option>
-    <option value="english">English</option>
-    <option value="french">French</option>
-    <option value="german">German</option>
-    <option value="hindi">Hindi</option>
-    <option value="icelandic">Icelandic</option>
-    <option value="italian">Italian</option>
-    <option value="japanese">Japanese</option>
-    <option value="korean">Korean</option>
-    <option value="norwegian">Norwegian</option>
-    <option value="polish">Polish</option>
-    <option value="portuguese">Portuguese</option>
-    <option value="romanian">Romanian</option>
-    <option value="russian">Russian</option>
-    <option value="spanish">Spanish</option>
-    <option value="swedish">Swedish</option>
-    <option value="turkish">Turkish</option>
-  </select>
+  <form method="POST" action="/config">
+    <select name="setting">
+      <option value="" disabled selected>Select Language</option>
+      <option value="Arabic">Arabic</option>
+      <option value="Chinese">Chinese</option>
+      <option value="Danish">Danish</option>
+      <option value="Dutch">Dutch</option>
+      <option value="English">English</option>
+      <option value="French">French</option>
+      <option value="German">German</option>
+      <option value="Hindi">Hindi</option>
+      <option value="Icelandic">Icelandic</option>
+      <option value="Italian">Italian</option>
+      <option value="Japanese">Japanese</option>
+      <option value="Korean">Korean</option>
+      <option value="Norwegian">Norwegian</option>
+      <option value="Polish">Polish</option>
+      <option value="Portuguese">Portuguese</option>
+      <option value="Romanian">Romanian</option>
+      <option value="Russian">Russian</option>
+      <option value="Spanish">Spanish</option>
+      <option value="Swedish">Swedish</option>
+      <option value="Turkish">Turkish</option>
+    </select>
 
+    <select name="level">
+      <option value="" disabled selected>Select Level</option>
+      <option value="beginner">Beginner</option>
+      <option value="intermediate">Intermediate</option>
+      <option value="fluent">Fluent</option>
+    </select>
+    <button type="submit">Go</button>
+  </form>
 
-  <select>
-    <option value="" disabled selected>Select Level</option>
-    <option value="Begineer">Begineer</option>
-    <option value="Intermediate">Intermediate</option>
-    <option value="Fluent">Fluent</option>
-  </select>
 
   <!-- <input type="range" class="form-control-range sync" id="slider1" min="0" max="50" value="{{temp_value}}" -->
 
