@@ -37,11 +37,12 @@ def TTS(text, language):
                     Text = text,
                     Engine = 'standard')
 
-    # os.remove('static/speech.mp3')
-    current_time = time.strftime("%Y-%m-%d %H:%M:%S")
-    file_name = "speech" + current_time + ".mp3"
-    file = open("static/"+file_name, 'wb')
+    #os.remove('static/speech.mp3')
+    current_time = time.strftime("%M-%S")
+    file_path = "static/speech_" + current_time + ".mp3"
+    # file = open(file_path, 'wb')
+    file = open(file_path, 'wb')
     file.write(response['AudioStream'].read())
     file.close()
 
-    return file_name
+    return file_path

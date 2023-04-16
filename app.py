@@ -6,6 +6,7 @@ import text_to_speech as tts
 
 # Creating a Flask app and instantiating sockets and OpenAI API
 app = Flask(__name__)
+app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 os.environ["OPENAI_API_KEY"] = "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"
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
@@ -45,12 +46,13 @@ history = [{"role": "system", "content": f"You are a {language} teacher for {lev
 
 responseFilePath = ""
 
-@app.route("src/")
+@app.route("/src/")
 def src():
-    return send_from_directory('static', responseFilePath)
+    return responseFilePath
 
 @app.route("/", methods=("GET", "POST"))
 def index():
+    global responseFilePath
     # When User sends a .wav file, transcribe it and generate a response, then send the response as audio
     if request.method == "POST":
         print("POST RECEIVED")
@@ -77,8 +79,8 @@ def index():
         for thing in history:
             print(thing['content'])
         
-        response_file_path = tts.TTS(response_text, language)
-        return response_file_path
+        responseFilePath = tts.TTS(response_text, language)
+        return responseFilePath
     
     # When the user selects their preferences, update the URL to reflect them
     ###

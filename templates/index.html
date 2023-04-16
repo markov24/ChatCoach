@@ -56,73 +56,42 @@
     <button id="stopButton">Stop</button>
   </div>
 
-    <input id="submitButton" type="submit" value="Submit">
-
-  <audio id="response-audio" controls autoplay>
-    <source src="{{ url_for('static', filename='speech.mp3') }}" type="audio/mpeg">
-  Your browser does not support the audio element.
+  <audio id="response-audio" hidden controls autoplay>
+    <source id = "response-source" src="{{ url_for('static', filename='speech.mp3') }}" type="audio/mpeg">
   </audio>
 
-  <ol id="recordingsList"></ol>
-
-  <script>
-    // When the form is submitted, send the audio data to the server
-document.querySelector("#submitButton").addEventListener("click", (event) => {
-  // var url = "/" + new Date().getTime();
-  // var url = "/src";
-  var audio = new Audio('src/');
-  audio.load();
-  audio.play();
-  
-  
-  // const audioElement = document.getElementById("response-audio");
-  // audioElement.src = "static/speech.mp3";
-  // audioElement.load();
-
-  // fetch("/", {
-  //   method: "POST",
-
-  // })
-  //   .then((response) => response.text())
-  //   .then((responseFilePath) => {
-  //     // Reload the audio element with the new source
-  //     const audioElement = document.getElementById("response-audio");
-  //     //console.log(responseFilePath)
-  //     audioElement.src = responseFilePath;
-  //     audioElement.load();
-  //   });
-
-  // fetch("/src").then(function(response){
-  //   // success
-  //   console.log(response.text);
-  //   return response.text;
-  // }).catch(function(error){
-  //   console.log(error);
-  // });
-});
-  </script>
+  <!-- <ol id="recordingsList"></ol> -->
+  <a id="upload_link" href="">Submit</a>
 
   <!--Recorder.js library-->
   <script src="https://cdn.rawgit.com/mattdiamond/Recorderjs/08e7abd9/dist/recorder.js"></script> 
   <!--Our recorder script-->
   <script src="{{ url_for('static', filename='js/record.js') }}"></script>
 
-  <!-- <audio controls>
-    <source src="speech.mp3" type="audio/mpeg">
-    Your browser does not support the audio element.
-  </audio> -->
-  <!-- <h1>Upload and Play Audio File</h1> -->
-    <button onclick="uploadAndPlay()">Play Speech</button>
-    <script>
-      function uploadAndPlay() {
-        // Upload the audio file to the website
-        var formData = new FormData();
-        formData.append("audio", "../static/speech.mp3");
-        // Send the form data to the server using AJAX or fetch
 
-        // Play the audio file automatically
-        var audio = new Audio("../static/speech.mp3");
-        audio.play();
+  <!-- <h1>Upload and Play Audio File</h1> -->
+    <script>
+      function loadAndPlay() {
+        console.log("reloading audio");
+        //window.location.reload();
+
+        let xhr = new XMLHttpRequest();
+        xhr.open('get', '/src');
+        xhr.send();
+
+        xhr.onload = function() {
+          console.log(xhr.response);
+          audio_path = xhr.response;
+
+          audio = document.getElementById("response-audio");
+          source = document.getElementById("response-source");
+          audio.hidden = false;
+
+          source.src = audio_path;
+
+          audio.load();
+          audio.play();
+        };
       }
     </script>
 
