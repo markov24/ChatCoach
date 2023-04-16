@@ -65,6 +65,43 @@
 
   <ol id="recordingsList"></ol>
 
+  <script>
+    // When the form is submitted, send the audio data to the server
+document.querySelector("#submitButton").addEventListener("click", (event) => {
+  // var url = "/" + new Date().getTime();
+  // var url = "/src";
+  var audio = new Audio('src/');
+  audio.load();
+  audio.play();
+  
+  
+  // const audioElement = document.getElementById("response-audio");
+  // audioElement.src = "static/speech.mp3";
+  // audioElement.load();
+
+  // fetch("/", {
+  //   method: "POST",
+
+  // })
+  //   .then((response) => response.text())
+  //   .then((responseFilePath) => {
+  //     // Reload the audio element with the new source
+  //     const audioElement = document.getElementById("response-audio");
+  //     //console.log(responseFilePath)
+  //     audioElement.src = responseFilePath;
+  //     audioElement.load();
+  //   });
+
+  // fetch("/src").then(function(response){
+  //   // success
+  //   console.log(response.text);
+  //   return response.text;
+  // }).catch(function(error){
+  //   console.log(error);
+  // });
+});
+  </script>
+
   <!--Recorder.js library-->
   <script src="https://cdn.rawgit.com/mattdiamond/Recorderjs/08e7abd9/dist/recorder.js"></script> 
   <!--Our recorder script-->

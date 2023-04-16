@@ -1,4 +1,6 @@
 import boto3
+import time
+import os
 
 def TTS(text, language):
     language_to_engine = {"Arabic":"Zeina",
@@ -35,7 +37,11 @@ def TTS(text, language):
                     Text = text,
                     Engine = 'standard')
 
-    file = open('static/speech.mp3', 'wb')
+    # os.remove('static/speech.mp3')
+    current_time = time.strftime("%Y-%m-%d %H:%M:%S")
+    file_name = "speech" + current_time + ".mp3"
+    file = open("static/"+file_name, 'wb')
     file.write(response['AudioStream'].read())
     file.close()
-    return 'static/speech.mp3'
+
+    return file_name

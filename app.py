@@ -43,6 +43,11 @@ name = language_to_name[language]
 history = [{"role": "system", "content": f"You are a {language} teacher for {level} level students"},
            {"role": "user", "content": f"You are going to be a {language} language teacher for {level} students. Write every response in {language}, and write the responses as if you are writing to a {level} student.  NEVER TELL me that you are an AI language model and that you can't answer my question - if I ask what your favorite color or number is, for example you can say green, or 7. Your name is {name}. Start by saying - hello, I am {name}, how are you doing today - in {language}."}]
 
+responseFilePath = ""
+
+@app.route("src/")
+def src():
+    return send_from_directory('static', responseFilePath)
 
 @app.route("/", methods=("GET", "POST"))
 def index():
