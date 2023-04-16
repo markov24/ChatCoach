@@ -1,16 +1,28 @@
 import os
 import openai
 from flask import Flask, redirect, render_template, request, url_for
+from flask_sock import Sock
 import text_to_speech as tts
 
+# Creating a Flask app and instantiating sockets and OpenAI API
 app = Flask(__name__)
 os.environ["OPENAI_API_KEY"] = "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"
 openai.api_key = os.getenv("OPENAI_API_KEY")
+# socketio = SocketIO(app)
+sock = Sock(app)
+
+@sock.route('/echo')
+def echo(ws):
+    while True:
+        data = ws.receive()
+        ws.send(data)
 
 # Get language and level from user options
 
 level = "beginner"
 language = "Spanish"
+
+temp_value = "HEllo my friend."
 
 world = {"Arabic":"Zeina",
                         "Chinese":"Zhiyu",
@@ -40,7 +52,6 @@ example = [f"Greet the student in {i} and ask the student what they want to lear
 
 
 @app.route("/", methods=("GET", "POST"))
-
 def index():
     # When User sends a .wav file, transcribe it and generate a response, then send the response as audio
     if request.method == "POST":
@@ -69,13 +80,26 @@ def index():
             print(thing['content'])
         
         response_file_path = tts.TTS(response_text, language)
-        return redirect(str(response_file_path))
+        return redirect("index.html")
     
     # When the user selects their preferences, update the URL to reflect them
     ###
 
     result = request.args.get("result")
     print(result)
-    return render_template("index.html", result=result)
+    return render_template("index.html")
+
+# # Handle messages recieved over 'connect' channel
+# @socketio.on('connect')
+# def connect():
+#     emit('after connect', {'data':'Fuck sockets...'})
+
+# # @socketio.on('Value changed')
+# # def value_changed(message):
+# #     temp_value = message['data']
+# #     emit('update value', message, broadcast=True)
 
 
+# # Sockets handle app instantiation
+# if __name__ == '__main__':
+#     socketio.run(app)

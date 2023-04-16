@@ -3,4 +3,5 @@ pandas
 os
 openai
 flask
+flask_socketio
 boto3

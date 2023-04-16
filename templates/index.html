@@ -7,6 +7,8 @@
     rel="shortcut icon"
     href="{{ url_for('static', filename='dog.png') }}"
   />
+  <!-- <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js"></script> -->
   <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}" />
 </head>
 
@@ -46,11 +48,18 @@
     <option value="Fluent">Fluent</option>
   </select>
 
+  <!-- <input type="range" class="form-control-range sync" id="slider1" min="0" max="50" value="{{temp_value}}" -->
+
   <div id="controls">
     <button id="recordButton">Record</button>
     <button id="pauseButton">Pause</button>
     <button id="stopButton">Stop</button>
   </div>
+  <audio controls autoplay>
+    <!-- <source src="{{ url_for('static', filename='speech.mp3') }}" type="audio/mpeg"> -->
+    <source src="/static/speech.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+  </audio>
   <!-- <form action="/" method="post">
     <input type="text" name="animal" placeholder="Enter an animal" required />
     <input type="submit" value="Generate names" />
@@ -60,6 +69,32 @@
   {% endif %} -->
   <ol id="recordingsList"></ol>
 
+  <!--Websockets to talk to app.py
+  <script>
+    $(document).ready(function(){
+      // sending a connect request to app.py
+      var socket = io.connect('/');
+
+      // Event handler for a change of value
+      // $('input.sync').on('input', function(event){
+      //   socket.emit('Value changed', {
+      //     who:$(this).attr('id'),
+      //     data: $(this).val()
+      //   });
+      //   return false;
+      // });
+
+      // // Receive broadcast message from app.py
+      // socket.on('after connect', function(msg){
+      //   console.log("After connect!!!", msg)
+      // });
+
+      // socket.on('update value', function(msg){
+      //   console.log('Value updated!!!');
+      //   $('#'+msg.who).val(msg.data);  // updates value
+      // });
+    });
+  </script> -->
   <!--Recorder.js library-->
   <script src="https://cdn.rawgit.com/mattdiamond/Recorderjs/08e7abd9/dist/recorder.js"></script> 
   <!--Our recorder script-->
