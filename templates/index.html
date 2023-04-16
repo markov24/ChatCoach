@@ -13,6 +13,39 @@
 <body>
   <img src="{{ url_for('static', filename='dog.png') }}" class="icon" />
   <h3>Say something to Snoop Dog</h3>
+  <select>
+    <option value="" disabled selected>Select Language</option>
+    <option value="">Select language</option>
+    <option value="arabic">Arabic</option>
+    <option value="chinese">Chinese</option>
+    <option value="danish">Danish</option>
+    <option value="dutch">Dutch</option>
+    <option value="english">English</option>
+    <option value="french">French</option>
+    <option value="german">German</option>
+    <option value="hindi">Hindi</option>
+    <option value="icelandic">Icelandic</option>
+    <option value="italian">Italian</option>
+    <option value="japanese">Japanese</option>
+    <option value="korean">Korean</option>
+    <option value="norwegian">Norwegian</option>
+    <option value="polish">Polish</option>
+    <option value="portuguese">Portuguese</option>
+    <option value="romanian">Romanian</option>
+    <option value="russian">Russian</option>
+    <option value="spanish">Spanish</option>
+    <option value="swedish">Swedish</option>
+    <option value="turkish">Turkish</option>
+  </select>
+
+
+  <select>
+    <option value="" disabled selected>Select Level</option>
+    <option value="Begineer">Begineer</option>
+    <option value="Intermediate">Intermediate</option>
+    <option value="Fluent">Fluent</option>
+  </select>
+
   <div id="controls">
     <button id="recordButton">Record</button>
     <button id="pauseButton">Pause</button>

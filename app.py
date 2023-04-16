@@ -7,6 +7,8 @@ app = Flask(__name__)
 os.environ["OPENAI_API_KEY"] = "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"
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
+level = "beginner"
+language = "Spanish"
 
 @app.route("/", methods=("GET", "POST"))
 def index():
@@ -14,20 +16,21 @@ def index():
         print("POST RECEIVED")
         # save_path = 
         audio_file = request.files["audio_data"]
-        audio_file.save("static/temp.wav")
+        # audio_file.save("static/temp.wav")
+        transcript = openai.Audio.transcribe(file=audio_file, model="whisper-1", response_format="text")
+
+        response = openai.ChatCompletion.create(
+        model="gpt-3.5-turbo",
+        messages=[
+                {"role": "system", "content": f"You are a {level} level teacher for {language}"},
+                {"role": "user", "content": transcript}
+            ]
+        )
+        return redirect(url_for("index", result=response.choices[0].text))
 
     result = request.args.get("result")
+    print(result)
     return render_template("index.html", result=result)
 
 
-def generate_prompt(animal):
-    return """Suggest three names for an animal that is a superhero.
 
-Animal: Cat
-Names: Captain Sharpclaw, Agent Fluffball, The Incredible Feline
-Animal: Dog
-Names: Ruff the Protector, Wonder Canine, Sir Barks-a-Lot
-Animal: {}
-Names:""".format(
-        animal.capitalize()
-    )
