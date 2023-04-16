@@ -8,7 +8,7 @@ os.environ["OPENAI_API_KEY"] = "sk-zWHJCD4Eosjh3WmRb5UyT3BlbkFJ5GxROmYobYiLCtEaz
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
 level = "beginner"
-language = ""
+language = "Spanish"
 
 @app.route("/", methods=("GET", "POST"))
 def index():
