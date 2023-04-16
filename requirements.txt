@@ -1,0 +1,6 @@
+numpy
+pandas
+os
+openai
+flask
+boto3

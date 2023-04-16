@@ -1,52 +1,39 @@
-from boto3 import Session
-from botocore.exceptions import BotoCoreError, ClientError
-from contextlib import closing
-import os
-import sys
-import subprocess
-from tempfile import gettempdir
+import boto3
 
-# Create a client using the credentials and region defined in the [adminuser]
-# section of the AWS credentials file (~/.aws/credentials).
-session = Session(profile_name="adminuser")
-polly = session.client("polly")
+language_to_engine = {"Arabic":"Zeina",
+                      "Chinese":"Zhiyu",
+                      "Danish":"Naja",
+                      "Dutch":"Lotte",
+                      "English":"Salli",
+                      "French":"Léa",
+                      "German":"Hans",
+                      "Hindi":"Aditi",
+                      "Icelandic":"Karl",
+                      "Italian":"Giorgo",
+                      "Japanese":"Mizuki",
+                      "Korean":"Seoyeon",
+                      "Norwegian":"Liv",
+                      "Polish":"Ewa",
+                      "Portuguese":"Cristiano",
+                      "Romanian":"Carmen",
+                      "Russian":"Tatyana",
+                      "Spanish":"Miguel",
+                      "Swedish":"Astrid",
+                      "Turkish":"Filiz",
+                      }
 
-try:
-    # Request speech synthesis
-    response = polly.synthesize_speech(Text="Hello world!", OutputFormat="mp3",
-                                        VoiceId="Joanna")
-except (BotoCoreError, ClientError) as error:
-    # The service returned an error, exit gracefully
-    print(error)
-    sys.exit(-1)
+polly_client = boto3.Session(
+    aws_access_key_id="AKIA3DJJ5GR64YYH5XOM",                     
+    aws_secret_access_key="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",
+    region_name='us-west-2').client('polly')
 
-# Access the audio stream from the response
-if "AudioStream" in response:
-    # Note: Closing the stream is important because the service throttles on the
-    # number of parallel connections. Here we are using contextlib.closing to
-    # ensure the close method of the stream object will be called automatically
-    # at the end of the with statement's scope.
-        with closing(response["AudioStream"]) as stream:
-           output = os.path.join(gettempdir(), "speech.mp3")
+response = polly_client.synthesize_speech(VoiceId='Amy',
+                OutputFormat='mp3', 
+                Text = "Greetings, sir. This is Jarvis, and I am pleased to report that your suit status is fully operational. All systems are functioning at optimal levels, and the suit is ready for deployment should you require it. Shall I provide you with a detailed breakdown of the suit's current capabilities, or is there anything else you require at this time, sir?",
+                Engine = 'neural')
 
-           try:
-            # Open a file for writing the output as a binary stream
-                with open(output, "wb") as file:
-                   file.write(stream.read())
-           except IOError as error:
-              # Could not write to file, exit gracefully
-              print(error)
-              sys.exit(-1)
+file = open('speech.mp3', 'wb')
+file.write(response['AudioStream'].read())
+file.close()
 
-else:
-    # The response didn't contain audio data, exit gracefully
-    print("Could not stream audio")
-    sys.exit(-1)
 
-# Play the audio using the platform's default player
-if sys.platform == "win32":
-    os.startfile(output)
-else:
-    # The following works on macOS and Linux. (Darwin = mac, xdg-open = linux).
-    opener = "open" if sys.platform == "darwin" else "xdg-open"
-    subprocess.call([opener, output])
