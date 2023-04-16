@@ -83,9 +83,10 @@ def index():
             print(thing['content'])
         
         responseFilePath = tts.TTS(response_text, language)
-        if(oldFilePath != ""):
-            os.remove(oldFilePath)
-        oldFilePath=responseFilePath
+        # TODO: remove old files...
+        # if(oldFilePath != ""):
+        #     os.remove(oldFilePath)
+        # oldFilePath=responseFilePath
         return responseFilePath
     
     # When the user selects their preferences, update the URL to reflect them
