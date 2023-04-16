@@ -14,7 +14,7 @@
 
 <body>
   <img src="{{ url_for('static', filename='dog.png') }}" class="icon" />
-  <h3>Say something to Snoop Dog</h3>
+  <h3>ChatCoach</h3>
   <select>
     <option value="" disabled selected>Select Language</option>
     <option value="">Select language</option>
@@ -91,7 +91,9 @@
           source.src = audio_path;
 
           audio.load();
-          audio.play();
+          audio.oncanplaythrough = function(){
+            audio.play();
+          }
         };
       }
     </script>

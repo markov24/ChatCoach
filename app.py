@@ -13,7 +13,7 @@ openai.api_key = os.getenv("OPENAI_API_KEY")
 
 # Get language and level from user options
 
-level = "beginner"
+level = "fluent"
 language = "Spanish"
 
 language_to_name = {"Arabic":"Zeina",
