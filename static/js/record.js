@@ -163,7 +163,26 @@ function createDownloadLink(blob) {
 		  fd.append("audio_data",blob, filename);
 		  xhr.open("POST","/",true);
 		  xhr.send(fd);
-	})
+		//   var xhr=new XMLHttpRequest();
+		//   var formData = new FormData();
+		//   formData.append("audio", "../static/speech.mp3");
+		//   // Send the form data to the server using AJAX or fetch
+		//   // Play the audio file automatically
+		//   xhr.onload = function() {
+		// 	// If the upload was successful, create a new Audio object and play the audio file
+		// 	if (xhr.status == 200) {
+		// 	  var audio = new Audio("../static/speech.mp3");
+		// 	  audio.play();
+		// 	}
+		//   }
+		//   xhr.open("POST", url, true);
+		//   xhr.send(formData);
+		//   var audio = new Audio("../speech.mp3");
+		//   audio.play();
+	});
+
+
+
 	li.appendChild(document.createTextNode (" "))//add a space in between
 	li.appendChild(upload)//add the upload link to li
 
