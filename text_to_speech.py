@@ -1,6 +1,7 @@
 import boto3
 import time
 import os
+import config
 
 def TTS(text, language):
     language_to_engine = {"Arabic":"Zeina",
@@ -26,8 +27,8 @@ def TTS(text, language):
                         }
 
     polly_client = boto3.Session(
-        aws_access_key_id="AKIA3DJJ5GR64YYH5XOM",                     
-        aws_secret_access_key="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",
+        aws_access_key_id=config.openAI_key,                     
+        aws_secret_access_key=config.aws_secret_access_key,
         region_name='us-west-2').client('polly')
     
     model = language_to_engine[language]

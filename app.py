@@ -2,11 +2,12 @@ import os
 import openai
 from flask import Flask, redirect, send_from_directory, render_template, request, url_for
 import text_to_speech as tts
+import config
 
 # Creating a Flask app and instantiating sockets and OpenAI API
 app = Flask(__name__)
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
-os.environ["OPENAI_API_KEY"] = "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"
+os.environ["OPENAI_API_KEY"] = config.openAI_key
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
 
